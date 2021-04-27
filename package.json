@@ -1,15 +1,15 @@
 {
-  "name": "ream-core",
+  "name": "ream",
   "collaborators": [
     "Chih-Ming Louis Lee <louis@chihminglee.com>"
   ],
   "version": "0.1.0",
   "files": [
-    "ream_core_bg.wasm",
-    "ream_core.js",
-    "ream_core.d.ts"
+    "ream_bg.wasm",
+    "ream.js",
+    "ream.d.ts"
   ],
-  "module": "ream_core.js",
-  "types": "ream_core.d.ts",
+  "module": "ream.js",
+  "types": "ream.d.ts",
   "sideEffects": false
 }
