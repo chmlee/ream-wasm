@@ -4,7 +4,7 @@
 * @param {string} source
 * @returns {string}
 */
-export function ream2json(source: string): string;
+export function ream2ast(source: string): string;
 /**
 * @param {string} source
 * @returns {string}
@@ -15,7 +15,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly ream2json: (a: number, b: number, c: number) => void;
+  readonly ream2ast: (a: number, b: number, c: number) => void;
   readonly ream2csv: (a: number, b: number, c: number) => void;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_malloc: (a: number) => number;

@@ -35,8 +35,8 @@ pre {
 
         <div class="button-container">
           <button id="load-example">Load Example</button>
-          <button class="update-button" id="json">JSON</button>
           <button class="update-button" id="csv">CSV</button>
+          <button class="update-button" id="ast">AST</button>
         </div>
 
         <div class="row">
@@ -49,7 +49,7 @@ pre {
 
       </div>
       <script type="module">
-        import init, {ream2json, ream2csv} from "./ream.js";
+        import init, {ream2csv, ream2ast} from "./ream.js";
 
         document.getElementById("load-example").addEventListener("click", () => {
           document.getElementById("input").value = `# Country
@@ -74,17 +74,27 @@ pre {
 
         init()
           .then(() => {
+            let format_err = (obj) => {
+              let [key, value] = Object.entries(obj["Err"])[0]
+              let err = `${key}: ${value}`
+              return err
+            }
 
             let update = (input, format) => {
-              try {
-                if (format == "csv") {
-                  return ream2csv(input)
-                } else if (format == "json") {
-                  let raw = ream2json(input);
-                  return JSON.stringify(JSON.parse(raw), undefined, 2);
+              if (format == "csv") {
+                let raw = ream2csv(input)
+                try {
+                  return format_err(JSON.parse(raw))
+                } catch {
+                  return raw
                 }
-              } catch {
-                return "error!"
+              } else if (format == "ast") {
+                let raw = ream2ast(input);
+                try {
+                  return format_err(JSON.parse(raw))
+                } catch {
+                  return JSON.stringify(JSON.parse(raw), null, 2)
+                }
               }
             }
 
@@ -93,10 +103,9 @@ pre {
                 let input = document.getElementById("input").value;
                 let format = button.id;
                 let output = update(input, format);
-                console.log(1);
                 document.getElementById("output").innerHTML = output;
               })
-            });
+              });
           });
       </script>
   </body>

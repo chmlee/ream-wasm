@@ -83,12 +83,12 @@ function getStringFromWasm0(ptr, len) {
 * @param {string} source
 * @returns {string}
 */
-export function ream2json(source) {
+export function ream2ast(source) {
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
         var ptr0 = passStringToWasm0(source, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         var len0 = WASM_VECTOR_LEN;
-        wasm.ream2json(retptr, ptr0, len0);
+        wasm.ream2ast(retptr, ptr0, len0);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         return getStringFromWasm0(r0, r1);
