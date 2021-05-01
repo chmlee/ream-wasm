@@ -3,13 +3,20 @@
   "collaborators": [
     "Chih-Ming Louis Lee <louis@chihminglee.com>"
   ],
-  "version": "0.1.0",
+  "description": "Data language for building maintainable social science datasets",
+  "version": "0.3.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chmlee/ream-core"
+  },
   "files": [
     "ream_bg.wasm",
     "ream.js",
     "ream.d.ts"
   ],
   "module": "ream.js",
+  "homepage": "https://ream-lang.org",
   "types": "ream.d.ts",
   "sideEffects": false
 }
