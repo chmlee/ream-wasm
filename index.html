@@ -25,6 +25,11 @@ pre {
   width: 50vw;
 }
 
+.form-container {
+  display: flex;
+  flex-direction: row;
+}
+
 
 
     </style>
@@ -35,8 +40,11 @@ pre {
 
         <div class="button-container">
           <button id="load-example">Load Example</button>
-          <button class="update-button" id="csv">CSV</button>
-          <button class="update-button" id="ast">AST</button>
+          <br/>
+          <form class="form-container">
+            <input class="format-button" type="radio" name="format" value="csv"> CSV
+            <input class="format-button" type="radio" name="format" value="ast"> AST
+          </form>
         </div>
 
         <div class="row">
@@ -75,38 +83,46 @@ pre {
         init()
           .then(() => {
             let format_err = (obj) => {
-              let [key, value] = Object.entries(obj["Err"])[0]
-              let err = `${key}: ${value}`
-              return err
+              //let [key, value] = Object.entries(obj["Err"])[0]
+              //let err = `${key}: ${value}`
+              //return err
+              return 1
             }
 
-            let update = (input, format) => {
+            let update = () => {
+
+              let format = document.querySelector('input[name="format"]:checked').value;
+              let input = document.getElementById("input").value;
+
               if (format == "csv") {
                 let raw = ream2csv(input)
                 try {
-                  return format_err(JSON.parse(raw))
+                  output = format_err(JSON.parse(raw))
                 } catch {
-                  return raw
+                  output = raw
                 }
               } else if (format == "ast") {
                 let raw = ream2ast(input);
                 try {
-                  return format_err(JSON.parse(raw))
+                  output = format_err(JSON.parse(raw))
                 } catch {
-                  return JSON.stringify(JSON.parse(raw), null, 2)
+                  output = JSON.stringify(JSON.parse(raw), null, 2)
                 }
               }
+
+              document.getElementById("output").innerHTML = output;
             }
 
-            document.querySelectorAll(".update-button").forEach(button => {
-              button.addEventListener("click", () => {
-                let input = document.getElementById("input").value;
-                let format = button.id;
-                let output = update(input, format);
-                document.getElementById("output").innerHTML = output;
-              })
-              });
+            document.querySelectorAll(".format-button").forEach(button => {
+              button.addEventListener("click", update);
+            });
+
+            document.querySelectorAll("#input").forEach(div => {
+              div.addEventListener("input", update);
+
           });
+        });
+
       </script>
   </body>
 </html>
