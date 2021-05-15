@@ -4,7 +4,7 @@
     "Chih-Ming Louis Lee <louis@chihminglee.com>"
   ],
   "description": "Data language for building maintainable social science datasets",
-  "version": "0.3.1",
+  "version": "0.3.3",
   "license": "MIT",
   "repository": {
     "type": "git",
