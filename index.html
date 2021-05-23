@@ -83,10 +83,9 @@ pre {
         init()
           .then(() => {
             let format_err = (obj) => {
-              //let [key, value] = Object.entries(obj["Err"])[0]
-              //let err = `${key}: ${value}`
-              //return err
-              return 1
+              let [key, value] = Object.entries(obj["Err"])[0]
+              let err = `${key}: ${value}`
+              return err
             }
 
             let update = () => {
@@ -94,6 +93,7 @@ pre {
               let format = document.querySelector('input[name="format"]:checked').value;
               let input = document.getElementById("input").value;
 
+              let output = undefined;
               if (format == "csv") {
                 let raw = ream2csv(input)
                 try {
